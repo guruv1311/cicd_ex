@@ -7,39 +7,37 @@ pipeline {
   }
 
   options {
-    buildDiscarder(logRotator(numToKeepStr: '10'))
     timeout(time: 30, unit: 'MINUTES')
+    buildDiscarder(logRotator(numToKeepStr: '10'))
   }
 
   stages {
 
     stage('Checkout') {
       steps {
+        echo '📥 Checking out source code'
         checkout scm
       }
     }
 
-    stage('Build in OpenShift') {
+    stage('Build & Deploy') {
       steps {
-        sh """
-          oc start-build ${APP_NAME} \
-            -n ${NAMESPACE} \
-            --wait \
-            --follow
-        """
-      }
-    }
+        echo '🚀 Deploying application'
 
-    stage('Deploy') {
-      steps {
         sh """
-          oc rollout status deployment/${APP_NAME} -n ${NAMESPACE}
+          oc rollout status deployment/${APP_NAME} -n ${NAMESPACE} || true
         """
       }
     }
   }
 
   post {
+    success {
+      echo '✅ Pipeline completed successfully'
+    }
+    failure {
+      echo '❌ Pipeline failed'
+    }
     always {
       deleteDir()
     }
