@@ -2,8 +2,8 @@ pipeline {
   agent any
 
   environment {
-    APP_NAME  = 'cicd-web-app'
-    NAMESPACE = 'guru'
+    APP_NAME  = "cicd-web-app"
+    NAMESPACE = "guru"
   }
 
   options {
@@ -16,76 +16,52 @@ pipeline {
 
     stage('Checkout') {
       steps {
-        echo '📥 Checking out source code...'
+        echo '📥 Checking out source code'
         checkout scm
 
         script {
-          env.GIT_COMMIT_MSG = sh(
-            script: "git log -1 --pretty=%B",
-            returnStdout: true
-          ).trim()
-
-          env.GIT_AUTHOR = sh(
-            script: "git log -1 --pretty=%an",
+          env.GIT_COMMIT = sh(
+            script: "git rev-parse --short HEAD",
             returnStdout: true
           ).trim()
         }
-
-        echo "Commit: ${env.GIT_COMMIT_MSG}"
-        echo "Author: ${env.GIT_AUTHOR}"
       }
     }
 
-    stage('Trigger OpenShift Build') {
+    stage('Start OpenShift Build') {
       steps {
-        echo '🚀 Starting OpenShift BuildConfig build...'
+        echo '🚀 Triggering OpenShift BuildConfig'
         sh """
           oc start-build ${APP_NAME} \
             -n ${NAMESPACE} \
+            --wait \
             --follow
         """
       }
     }
 
-    stage('Deploy') {
+    stage('Deploy to OpenShift') {
       when {
-        anyOf {
-          branch 'main'
-          branch 'master'
-        }
+        branch 'main'
       }
       steps {
-        echo '📦 Deploying application...'
+        echo '📦 Deploying application'
         sh """
-          oc rollout status deployment/${APP_NAME} -n ${NAMESPACE} || true
+          oc rollout status deployment/${APP_NAME} -n ${NAMESPACE}
         """
       }
     }
   }
 
   post {
-    always {
-      echo '🧹 Cleaning workspace...'
-      deleteDir()
-    }
-
     success {
-      echo """
-✅ Build #${env.BUILD_NUMBER} succeeded
-Project: ${APP_NAME}
-Commit: ${env.GIT_COMMIT_MSG}
-Author: ${env.GIT_AUTHOR}
-"""
+      echo "✅ Build & Deploy Successful"
     }
-
     failure {
-      echo """
-❌ Build #${env.BUILD_NUMBER} failed
-Project: ${APP_NAME}
-Commit: ${env.GIT_COMMIT_MSG}
-Author: ${env.GIT_AUTHOR}
-Console: ${env.BUILD_URL}console
-"""
+      echo "❌ Pipeline Failed"
+    }
+    always {
+      deleteDir()
     }
   }
 }
