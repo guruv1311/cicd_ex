@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern web application with CI/CD pipeline">
+    <meta name="keywords" content="web app, CI/CD, Jenkins, modern design">
+    <title>CI/CD Web Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <nav class="nav">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <h1>DevOps App</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#pipeline" class="nav-link">Pipeline</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="home" class="hero">
+                <div class="hero-content">
+                    <h2 class="hero-title">
+                        Build, Test & Deploy
+                        <span class="gradient-text">Seamlessly</span>
+                    </h2>
+                    <p class="hero-description">
+                        Experience the power of automated CI/CD pipelines with Jenkins. 
+                        Deploy faster, test smarter, and scale effortlessly.
+                    </p>
+                    <div class="hero-buttons">
+                        <button id="get-started-btn" class="btn btn-primary">Get Started</button>
+                        <button id="learn-more-btn" class="btn btn-secondary">Learn More</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-card card-1">
+                        <span class="card-icon">✓</span>
+                        <span class="card-text">Build Success</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <span class="card-icon">⚡</span>
+                        <span class="card-text">Fast Deploy</span>
+                    </div>
+                    <div class="floating-card card-3">
+                        <span class="card-icon">🔒</span>
+                        <span class="card-text">Secure</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="features">
+                <h2 class="section-title">Powerful Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔄</div>
+                        <h3>Continuous Integration</h3>
+                        <p>Automatically build and test your code with every commit</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📦</div>
+                        <h3>Automated Deployment</h3>
+                        <p>Deploy to staging and production with a single click</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Real-time Monitoring</h3>
+                        <p>Track build status and performance metrics in real-time</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔐</div>
+                        <h3>Security First</h3>
+                        <p>Built-in security scanning and vulnerability detection</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pipeline" class="pipeline">
+                <h2 class="section-title">CI/CD Pipeline Status</h2>
+                <div class="pipeline-container">
+                    <div class="pipeline-stage" data-stage="checkout">
+                        <div class="stage-icon">📥</div>
+                        <h3>Checkout</h3>
+                        <div class="stage-status">Ready</div>
+                    </div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-stage" data-stage="build">
+                        <div class="stage-icon">🔨</div>
+                        <h3>Build</h3>
+                        <div class="stage-status">Ready</div>
+                    </div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-stage" data-stage="test">
+                        <div class="stage-icon">🧪</div>
+                        <h3>Test</h3>
+                        <div class="stage-status">Ready</div>
+                    </div>
+                    <div class="pipeline-arrow">→</div>
+                    <div class="pipeline-stage" data-stage="deploy">
+                        <div class="stage-icon">🚀</div>
+                        <h3>Deploy</h3>
+                        <div class="stage-status">Ready</div>
+                    </div>
+                </div>
+                <button id="run-pipeline-btn" class="btn btn-primary">Run Pipeline</button>
+            </section>
+
+            <section id="contact" class="contact">
+                <h2 class="section-title">Get In Touch</h2>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 DevOps App. Built with ❤️ and Jenkins.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
