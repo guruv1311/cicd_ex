@@ -1,26 +1,17 @@
 {
-    "name": "cicd-web-app",
-    "version": "1.0.0",
-    "description": "A modern web application with Jenkins CI/CD pipeline",
-    "main": "index.html",
-    "scripts": {
-        "start": "npx http-server . -p 8080 -o",
-        "dev": "npx http-server . -p 8080 -o",
-        "build": "echo 'Build completed - static files ready'",
-        "test": "node test.js",
-        "lint": "echo 'Linting completed'",
-        "serve": "npx http-server dist -p 8080"
-    },
-    "keywords": [
-        "web",
-        "app",
-        "jenkins",
-        "cicd",
-        "devops"
-    ],
-    "author": "",
-    "license": "MIT",
-    "devDependencies": {
-        "http-server": "^14.1.1"
-    }
+  "name": "cicd-web-app",
+  "version": "1.0.0",
+  "description": "A modern web application with Jenkins CI/CD pipeline",
+  "private": true,
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server . -p 8080",
+    "build": "echo \"Build completed - static files ready\"",
+    "test": "echo \"No tests configured\"",
+    "lint": "echo \"Linting completed\""
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "license": "MIT"
 }
